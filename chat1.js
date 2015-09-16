@@ -1,13 +1,15 @@
 Messages = new Mongo.Collection("msgs");
 
 Meteor.methods({
-  sendMessage: function (messageText) {
-    /* authorization code */
+  sendMessage: function (message) {
+    if (! Meteor.userId()) {
+      throw new Meteor.Error("not-authorized");
+    }
 
     Messages.insert({
-      messageText: messageText,
+      messageText: message,
       createdAt: new Date(),
-      username: "anonymous"
+      username: Meteor.user().username  // <-add real username
     });
   }
 });
@@ -47,5 +49,7 @@ if (Meteor.isClient) {
     /* scroll event */
 
   });
-  /*account config*/
+  Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
+  });
 }

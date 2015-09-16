@@ -1,7 +1,12 @@
+<head>
+  <title>Meteor Chat</title>
+</head>
+
 <body>
   <div class="container">
     <header>
       <h1>Meteor Chat</h1>
+      {{> loginButtons}}
     </header>
     <ul class="message-window">
       {{#each recentMessages}}
@@ -10,9 +15,11 @@
     </ul>
     <!-- more-messages button -->
     <footer>
+      {{#if currentUser}}
         <form class="new-message">
-          <input type="text" name="text" placeholder="Add a message" />
+          <input type="text" name="text" placeholder="Add a message" autocomplete="off" />
         </form>
+      {{/if}}
     </footer>
   </div>
 </body>
