@@ -8,3 +8,5 @@ meteor-platform
 accounts-ui
 accounts-password
 accounts-facebook
+percolate:momentum
+reactive-var
